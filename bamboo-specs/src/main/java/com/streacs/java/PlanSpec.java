@@ -67,6 +67,7 @@ public class PlanSpec {
             project(),
             "STREACS Atlassian Crowd", "C5B6EA")
             .enabled(true)
+            .noPluginConfigurations()
             .noNotifications()
             .linkedRepositories("DCK - STREACS Atlassian Crowd (master)")
             .planBranchManagement(new PlanBranchManagement()
