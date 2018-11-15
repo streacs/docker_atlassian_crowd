@@ -10,13 +10,17 @@ docker run -ti -e ORACLE_JAVA_EULA=accepted -p 8060:8060 streacs/atlassian-crowd
 ```
 
 ## Environment Variables
-* ORACLE_JAVA_EULA
-* JVM_ARGUMENTS
-* SYSTEM_USER = crowd
-* SYSTEM_GROUP = crowd
-* SYSTEM_HOME = /home/crowd
-* APPLICATION_INST = /opt/atlassian/crowd
-* APPLICATION_HOME = /var/opt/atlassian/application-data/crowd
+* (M) ORACLE_JAVA_EULA = accepted
+* (O) JVM_ARGUMENTS =
+* (I) SYSTEM_USER = crowd
+* (I) SYSTEM_GROUP = crowd
+* (I) SYSTEM_HOME = /home/crowd
+* (I) APPLICATION_INST = /opt/atlassian/crowd
+* (I) APPLICATION_HOME = /var/opt/atlassian/application-data/crowd
+* (O) JVM_MEMORY_MIN = 1024m
+* (O) JVM_MEMORY_MAX = 2048m
+
+(M) = Mandatory / (O) = Optional / (I) Information
 
 ## Ports
 * 8095 = Default HTTP Connector
@@ -32,6 +36,23 @@ Add following environment variable to your configuration :
 ```bash
 -e ORACLE_JAVA_EULA=accepted
 ```
+
+## Examples
+
+Modify JVM memory
+```bash
+docker run -ti -e ORACLE_JAVA_EULA=accepted -p 8060:8060 -e JVM_MEMORY_MIN=1024m -e JVM_MEMORY_MAX=2048m streacs/atlassian-crowd:x.x.x
+```
+
+Persist application data
+```bash
+docker run -ti -e ORACLE_JAVA_EULA=accepted -p 8060:8060 -v CROWD-DATA:/var/opt/atlassian/application-data/crowd streacs/atlassian-crowd:x.x.x
+```
+
+## Databases
+
+This image doesn't include the MySQL JDBC driver.
+Please use PostgreSQL.
 
 ## Source Code
 [Github](https://github.com/streacs/docker_atlassian_crowd)
